@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
 
   spec.add_dependency 'mini_magick', '~> 4.1'
-  spec.add_dependency 'fastimage', '~> 1.6.4'
+  spec.add_dependency 'fastimage', '>= 1.8'
   spec.add_runtime_dependency 'jekyll', '< 4'
 end
