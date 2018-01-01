@@ -49,6 +49,7 @@ module Jekyll
       settings['source'] ||= '.'
       settings['output'] ||= 'generated'
       settings['markup'] ||= 'picturefill'
+      settings['markup_class'] ||= ''
 
       # Prevent Jekyll from erasing our generated files
       site.config['keep_files'] << settings['output'] unless site.config['keep_files'].include?(settings['output'])
@@ -156,11 +157,13 @@ module Jekyll
           source_tags += "#{markdown_escape * 4}<source srcset=\"#{url}#{instance[source][:generated_src]}\"#{media}>\n"
         end
 
+        markup_class = if settings['markup_class'] then " class=\"#{settings['markup_class']}\" " end
+
         # Note: we can't indent html output because markdown parsers will turn 4 spaces into code blocks
         # Note: Added backslash+space escapes to bypass markdown parsing of indented code below -WD
-        picture_tag = "<picture>\n"\
+        picture_tag = "<picture data-href=\"#{url}#{instance['source_default'][:generated_src]}\"#{markup_class}>\n"\
                       "#{source_tags}"\
-                      "#{markdown_escape * 4}<img src=\"#{url}#{instance['source_default'][:generated_src]}\" #{html_attr_string}>\n"\
+                      "#{markdown_escape * 4}<img src=\"#{url}#{instance['source_placeholder'][:generated_src]}\" #{html_attr_string}>\n"\
                       "#{markdown_escape * 2}</picture>\n"
       elsif settings['markup'] == 'interchange'
 
