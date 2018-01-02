@@ -164,6 +164,9 @@ module Jekyll
         picture_tag = "<picture data-href=\"#{url}#{instance['source_default'][:generated_src]}\"#{markup_class}>\n"\
                       "#{source_tags}"\
                       "#{markdown_escape * 4}<img src=\"#{url}#{instance['source_placeholder'][:generated_src]}\" #{html_attr_string}>\n"\
+                      "#{markdown_escape * 4}<noscript>\n"\
+                      "#{markdown_escape * 6}<img src=\"#{url}#{instance['source_default'][:generated_src]}\" style=\"display: block;position: absolute;top: 0;left: 0;width: 100%;height: 100%;margin: auto;\">\n"\
+                      "#{markdown_escape * 4}</noscript>\n"\
                       "#{markdown_escape * 2}</picture>\n"
       elsif settings['markup'] == 'interchange'
 
